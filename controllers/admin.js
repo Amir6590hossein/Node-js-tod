@@ -15,3 +15,10 @@ exports.deleteTodo = (req, res) => {
     else console.log(err);
   });
 };
+
+exports.completeTodo = (req, res) => {
+  Todo.setTodoToComplete(req.params.id, (err) => {
+    if (!err) res.redirect("/");
+    else console.log(err);
+  });
+};
