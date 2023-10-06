@@ -31,6 +31,17 @@ class Todo {
       callback(todos);
     });
   }
+
+  static deleteTodo(id, callback) {
+    fs.readFile(filePath, (err, fileContent) => {
+      const todos = JSON.parse(fileContent);
+      const filteredTodos = todos.filter((t) => t.id != id);
+      fs.writeFile(filePath, JSON.stringify(filteredTodos), (err) => {
+        if (err) callback(err);
+        else return callback([]);
+      });
+    });
+  }
 }
 
 module.exports = Todo;
